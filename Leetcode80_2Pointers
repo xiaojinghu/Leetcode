@@ -1,0 +1,36 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # since the array is sorted, duplicates must be adjacent.
+        # we can use two pointers to solve this problem
+        
+        #edge cases
+        if not nums:
+            return 0
+        if len(nums) <= 2:
+            return 2
+                    
+        # nums[:i+1] is the array that has been processed to satisfy the requirements
+        i = 1
+        # nums[j:] is the array that has not been processed
+        j = 2
+        length = len(nums)
+        while(j<len(nums)):
+            if nums[i] != nums[i-1]:
+                # if nums[i] == nums[j]:
+                    # add [j] to the list
+                i += 1
+                nums[i] = nums[j]
+                j += 1
+                continue
+            if nums[j] == nums[i]:
+                j += 1
+                length -= 1
+                continue
+            # add j to the list
+            i += 1
+            nums[i] = nums[j]
+            j += 1

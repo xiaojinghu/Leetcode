@@ -6,18 +6,17 @@ class Solution(object):
         :rtype: int
         """
         # this is a two pointer solution
+        # i is the slo runner
+        # j is the fast runner that points to values!=val
         i = 0
         j = 0
-        length = len(nums)
-        while(i<len(nums) and j<len(nums)):
-            # use non-val value to cover val value
+        while(j<len(nums)):
             if nums[j]!=val:
-                nums[i]=nums[j]
+                nums[i] = nums[j]
                 i += 1
                 j += 1
                 continue
-            length -= 1
             j += 1
-                
-            
-        return length
+        # note that after we copied nums[j] to nums[i], we actually increament 
+        # i by one, so here we return i
+        return i

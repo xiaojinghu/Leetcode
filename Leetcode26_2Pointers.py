@@ -4,14 +4,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        i = 0
+        # i is the slow runner
+        # j is the fast runner
+        i = 1
         j = 1
-        # nums[:i] contains no duplicate
-        # nums[i:] are not processed
+        
         while(j<len(nums)):
-            # nums[i:j] contains duplicates
-            if nums[j] != nums[i]:
-                i += 1
+            if nums[j]!= nums[i-1]:
                 nums[i] = nums[j]
+                i += 1
+                j += 1
+                continue
             j += 1
-        return i+1
+        return i
+                

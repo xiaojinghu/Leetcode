@@ -17,13 +17,14 @@ class Solution(object):
         j = 2
 
         while(j<len(nums)):
-            if nums[j] == nums[i]:
+            if nums[j] == nums[i-1] and nums[j]==nums[i-2]:
+                # this means nums[j] is a duplicate
                 j += 1
-                contiue
-            if nums[i]==nums[i-1] and nums[i-1]==nums[i-2]:
-                # nums[i] is a duplicate, we can need to cover it
-                nums[i] = nums[j]
-                i  += 1
-                j += 1
-
-        return i+1
+                continue
+            # if nums[j] is not a duplicate
+            nums[i] = nums[j]
+            i += 1
+            j += 1
+            
+        return i
+                

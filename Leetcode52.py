@@ -19,22 +19,17 @@ class Solution(object):
             for i in range(n):
                 j = board[i]
                 result[i] = result[i][:j]+"Q"+result[i][j+1:]
-            res.append(result)
+            res[0]+=1
         for j in range(n):
             # if the current position is valid, we find the position of the next queen
             if self.check(len(board), j, board):
                 self.dfs(n, board+[j], res)
                 
-
-            
-    def solveNQueens(self, n):
+    def totalNQueens(self, n):
         """
         :type n: int
-        :rtype: List[List[str]]
+        :rtype: int
         """
-        #Since there are n queens, n rows and no two queens can be at
-        # the same row, if there is a solution, we can use a list of length n 
-        # where list[i] records the position of the queen in row i.
-        res = []
+        res = [0]
         self.dfs(n, [], res)
-        return res
+        return res[0]

@@ -16,7 +16,7 @@ class Solution(object):
         if extraLeft == 0 and extraRight == 0:
             if self.isValid(s):
                 res.append(s)
-                return
+            return
         for i in range(start, len(s)):
             # we need to delete one letter from s and check if it is valid
             # to avoid repeated answor, for consecuitive '('s and ')'s, we need only delete the first one.

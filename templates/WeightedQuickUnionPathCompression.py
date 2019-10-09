@@ -12,6 +12,8 @@ class weightedQucikUnionPathCompression(object):
     def union(self, x, y):
         rootX = self.getRoot(x)
         rootY = self.getRoot(y)
+        if rootX == rootY:
+            return
 
         if self.size[rootX] <= self.size[rootY]:
             # we append the x cluster to y

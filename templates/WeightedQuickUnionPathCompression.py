@@ -1,5 +1,5 @@
 class weightedQucikUnionPathCompression(object):
-    def __init__(self, n)
+    def __init__(self, n):
         self.parent = list(range(n))
         self.size = [1]*n
 

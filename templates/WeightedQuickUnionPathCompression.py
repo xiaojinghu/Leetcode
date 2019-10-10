@@ -4,9 +4,10 @@ class weightedQucikUnionPathCompression(object):
         self.size = [1]*n
 
     def getRoot(self, x):
-        while(pself.arent[x] != x):
+        while(self.parent[x] != x):
             # path compression
             self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
         return x
 
     def union(self, x, y):

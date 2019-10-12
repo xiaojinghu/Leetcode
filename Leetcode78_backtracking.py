@@ -4,7 +4,6 @@ class Solution(object):
         if i>= len(nums):
             res.append(path)
             return
-        # Suppose path is an existing solution and now we are at index i
         # we have two choises at position i, add nums[i] to path or not
         
         # case 1: do not add nums[i], build other candidates

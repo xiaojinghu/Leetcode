@@ -1,4 +1,4 @@
-class weightedQucikUnionPathCompression(object):
+class UnionFind(object):
     def __init__(self, n):
         self.parent = list(range(n))
         self.size = [1]*n

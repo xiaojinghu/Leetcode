@@ -4,18 +4,23 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        maxWater = 0
+        if not height or len(height)<=1:
+            return 0
+        maxArea = 0
         i = 0
         j = len(height)-1
+        
         while(i<j):
-            # we need to find the maximum water between i and j
-            if height[i]<= height[j]:
-                currWater = (j-i)*height[i]
-                maxWater = max(maxWater, currWater)
-                # currently the lower board is height[i] and we should move i forward to see if we can get a bigger area
+            # the height of the container is determined
+            # by the minimun height of i and j
+            currHeight = min(height[i], height[j])
+            # currArea is the largest area with currHeight since the distance between i and j is the biggest one
+            currArea = currHeight*(j-i)
+            maxArea = max(maxArea, currArea)
+            if height[i]<=height[j]:
+                # we move i farward to see if we can find a bigger area
                 i += 1
-                continue
-            currWater = (j-i)*height[j]
-            maxWater = max(maxWater, currWater)
-            j -= 1
-        return maxWater
+            else:
+                # we move j backward to see if we can fisn a bigger area
+                j -= 1
+        return maxArea

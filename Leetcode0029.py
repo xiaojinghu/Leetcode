@@ -25,19 +25,27 @@ class Solution(object):
         if divisor == -1:
             return -dividend
         
+        # calculate the sign of the result
         if (dividend > 0 and divisor > 0) or (dividend<0 and divisor<0):
             sign = 1
         else:
             sign = -1
+        # convert both divisor and divident to positive values
         divisor = abs(divisor)
         dividend = abs(dividend)
         
         quotient = 0
-        for i in range(31, -1, -1):
-            new_divisor = divisor << i
-            if new_divisor <= dividend:
-                quotient += 1<<i
-                dividend -= new_divisor
-        
-        return sign * quotient
+        i = 0
+        # first find the maximum divisor 
+        while(dividend>divisor):
+            i += 1
+            divisor = divisor<<1
+        # now divisor>=divident
+        # and divisor = oriDivisor * 2^i
+        for j in range(i, -1, -1):
+            if divisor<=dividend:
+                quotient += (1<<j)
+                dividend -= divisor
+            divisor = divisor>>1
+        return sign*quotient
         

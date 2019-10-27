@@ -2,13 +2,13 @@ from collections import deque
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
         # this is a simple BFS implementation
+        # note that the begin word may not be in the wordList, so we need to add it in.
         wordDict = set(wordList+[beginWord])
         if endWord not in wordDict:
             return 0
         
         queue = deque([(beginWord,1)])
         while(queue):
-            
             currWord, currLevel = queue.pop()
             # pop the word from the dict to avoid repeated visiting
             if currWord not in wordDict:

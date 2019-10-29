@@ -14,11 +14,11 @@ class Solution(object):
             return None
         
         slow = head
-        fast = head.next
+        fast = head
         
         while(slow and fast and fast.next):
-            if slow == fast:
-                return True
             slow = slow.next
             fast = fast.next.next
+            if slow == fast:
+                return True     
         return False

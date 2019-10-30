@@ -6,18 +6,22 @@ class Solution(object):
         """
         if not intervals:
             return []
+        # first sort these intervals by starting time
         intervals.sort()
         res = []
         for i in range(len(intervals)):
+            currInterval = intervals[i]
             if not res:
-                res.append(intervals[i])
+                res.append(currInterval)
                 continue
-            # we check if the current interval overlaps with the former merged one
-            if intervals[i][0]>res[-1][1]:
-                #No overlap 
-                res.append(intervals[i])
+            # we need to check if the current interval has intersection with the previous one
+            prevInterval = res[-1]
+            if currInterval[0]>prevInterval[1]:
+                # no intersection, add current interval into
+                # the result and move on
+                res.append(currInterval)
                 continue
-            # we need to merge res[-1] and intervals[i]
-            lastInterval = res.pop()
-            res.append([lastInterval[0], max(lastInterval[1],intervals[i][1])])
+            # current interval has intersection with the previous interval, and it can only has intersection with the one before, we merge it with the previous one and move on
+            prevInterval[1] = max([currInterval[1], prevInterval[1]])
+            
         return res

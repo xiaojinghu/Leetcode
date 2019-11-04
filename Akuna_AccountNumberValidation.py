@@ -3,6 +3,7 @@ class solution(object):
         # first check the length
         if len(account)!=8:
             return False
+        account = account.upper()
         # then check if each dight is an hexadecimal
         for char in account:
             if char not in '0123456789ABCDEF':

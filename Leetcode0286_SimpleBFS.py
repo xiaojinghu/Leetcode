@@ -1,25 +1,22 @@
-class Solution():    
+class Solution(object):
     def wallsAndGates(self, rooms):
         """
-        input: List[int][int]
-        rtype: List[int][int]
+        :type rooms: List[List[int]]
+        :rtype: None Do not return anything, modify rooms in-place instead.
         """
-        # corner cases
-        if not rooms or not rooms[0]:
-            return rooms
-        # initialize the queue
+        # Do BFS for each empty room
         queue = collections.deque()
         for i in range(len(rooms)):
             for j in range(len(rooms[0])):
+                # if this is a gate,we add it into the queue
                 if rooms[i][j] == 0:
                     queue.appendleft((i,j))
-        # traverse the queue level by level
-        # the level of the node is the shortest distance
         while(queue):
-            row, col = queue.pop()
-            # traverse its neighbors
-            for m, n in [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]:
-                if 0<=m<len(rooms) and 0<=n<len(rooms[0]):
-                    if rooms[m][n] == 2147483647:
-                        rooms[m][n] = rooms[row][col]+1
+            size = len(queue)
+            for index in range(size):
+                i, j = queue.pop()
+                for m, n in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
+                    if 0<=m<len(rooms) and 0<=n<len(rooms[0]) and rooms[m][n]>rooms[i][j]+1:
+                        rooms[m][n] = rooms[i][j]+1
                         queue.appendleft((m,n))
+        

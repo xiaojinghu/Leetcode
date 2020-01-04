@@ -14,8 +14,9 @@ def inorder(root):
             stack.append(stack[-1].left)
             continue
 
-        # Step2: if the stack is not empty, we pop the top element out. if it do not has
-        #        a right child, we repeat Step2, else, we jump to Step1.
+        # Step2: if the stack is not empty, we pop the top element out. 
+        #        if it does not have a right child, we repeat Step2.
+        #        if it has a right child, we jump to Step1.
         while(stack):
             node = stack.pop()
             if not node.right:
